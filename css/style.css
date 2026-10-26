@@ -30,7 +30,8 @@ a {
     text-decoration: none;
 }
 
-.navbar {
+/* Navigation */
+.navbar { 
     max-width: 1100px;
     margin: auto;
     padding: 24px;
@@ -58,6 +59,7 @@ a {
     color: var(--accent);
 }
 
+/* Hero and sections */
 .hero,
 .section {
     max-width: 1100px;
@@ -126,18 +128,31 @@ h1 span {
     color: var(--muted);
 }
 
+/* Project grid */
 .project-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
+    gap: 24px;
     margin-top: 32px;
+    align-items: stretch;
 }
 
+/* Project cards */
 .project-card {
     padding: 26px;
     border: 1px solid var(--border);
     border-radius: 14px;
     background: var(--surface);
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
 
 .project-card h3 {
@@ -156,6 +171,20 @@ h1 span {
     letter-spacing: 1px;
 }
 
+/* Project card header */
+.project-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.project-card-header .project-number {
+    margin: 0;
+}
+
+/* Project tags */
 .tag {
     display: inline-block;
     margin: 5px 5px 0 0;
@@ -166,6 +195,37 @@ h1 span {
     font-size: 0.8rem;
 }
 
+/* Project status badges */
+.status {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.status.planned {
+    background: #293247;
+    color: #c2cbe0;
+}
+
+.status.in-progress {
+    background: #163451;
+    color: #83c5ff;
+}
+
+.status.completed {
+    background: #163b2c;
+    color: #82e0ad;
+}
+
+.status.on-hold {
+    background: #49351b;
+    color: #ffd18a;
+}
+
+/* Footer */
 footer {
     padding: 28px 24px;
     border-top: 1px solid var(--border);
@@ -194,5 +254,20 @@ footer {
 
     .project-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .project-card {
+        transition: none;
+    }
+
+    .project-card:hover {
+        transform: none;
     }
 }
